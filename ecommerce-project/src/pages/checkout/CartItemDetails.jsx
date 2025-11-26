@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
+const API = import.meta.env.VITE_API_URL;
 export function CartItemDetail({ cartItem,loadCart }) {
     const deleteCartItem = async () =>{
-        await axios.delete(`api/cart-items/${cartItem.productId}`);
+        await axios.delete(`${API}/api/cart-items/${cartItem.productId}`);
         await loadCart();
     
     }
@@ -26,7 +27,7 @@ export function CartItemDetail({ cartItem,loadCart }) {
     const addToCartBtn = async ()=>{
         if(isUpdate){
             
-                await axios.put(`api/cart-items/${cartItem.productId}`,{
+                await axios.put(`${API}/api/cart-items/${cartItem.productId}`,{
                     quantity:Number(quantity)
                 });
                 await loadCart();

@@ -2,8 +2,9 @@ import { Fragment } from "react";
 import axios from 'axios';
 import dayjs from "dayjs";
 export function OrderDetailGrid({order,loadCart}){
+  const API = import.meta.env.VITE_API_URL;
      const addToCart = async (productId)=>{
-            await axios.post('/api/cart-items',{
+            await axios.post(`${API}/api/cart-items`,{
               productId : productId,
               quantity : 1
             });

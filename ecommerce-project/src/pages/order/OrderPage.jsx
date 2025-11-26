@@ -5,10 +5,11 @@ import {HeaderComponent} from '../../components/HeaderComponent'
 import { OrderGrid } from './OrderGrid';
 window.axios = axios;
 export function OrderPage({cart,loadCart}){
+  const API = import.meta.env.VITE_API_URL;
   const [currOrder, setOrder] = useState([]);
   useEffect(()=>{
     const getO =async ()=>{
-      const response = await axios.get('/api/orders?expand=products');
+      const response = await axios.get(`${API}/api/orders?expand=products`);
        setOrder(response.data);
     };
     getO();

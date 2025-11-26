@@ -6,11 +6,12 @@ import { useState,useEffect } from 'react';
 import './Checkout-header.css';
 import './Checkout-page.css';
 export function CheckoutPage({cart,loadCart}){
+  const API = import.meta.env.VITE_API_URL;
   const [paymentsummery ,setPaymentSummery] =useState(null);
 
   const [deliveryOptions,setDeliveryOptions] =useState([]);
   useEffect(()=>{
-    axios.get('api/delivery-options?expand=estimatedDeliveryTime')
+    axios.get(`${API}/api/delivery-options?expand=estimatedDeliveryTime`)
     .then((respone)=>{
       setDeliveryOptions(respone.data);
     });
@@ -19,7 +20,7 @@ export function CheckoutPage({cart,loadCart}){
   },[]);
 
   useEffect(()=>{
-    axios.get('api/payment-summary')
+    axios.get(`${API}/api/payment-summary`)
     .then((respone)=>{
       setPaymentSummery(respone.data);
       

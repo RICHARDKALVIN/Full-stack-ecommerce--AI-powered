@@ -9,10 +9,13 @@ import './App.css'
 
 
 function App() {
+  const API = import.meta.env.VITE_API_URL;
+  console.log(API);
  const [cart ,setCart]=useState([]);
   const loadCart = async ()=> {
-  const cart= await axios.get('/api/cart-items?expand=product');
+  const cart= await axios.get(`${API}/api/cart-items?expand=product`);
   setCart(cart.data);
+
   }
 
  useEffect(()=>{

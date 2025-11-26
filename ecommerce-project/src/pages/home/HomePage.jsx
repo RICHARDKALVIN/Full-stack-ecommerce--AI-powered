@@ -6,13 +6,13 @@ import { useSearchParams } from 'react-router';
 import './HomePage.css';
 
 export function HomePage({cart,loadCart}){
-  
+  const API = import.meta.env.VITE_API_URL;
   const [searchParams] =useSearchParams();
   const [products ,setProducts] =useState([]);
   const search = searchParams.get('search');
 
   useEffect(()=>{
-    const reqUrl = search ? `/api/products?search=${search}` : '/api/products';
+    const reqUrl = search ? `${API}/api/products?search=${search}` : `${API}/api/products`;
 
     async function getP() {
       const response = await axios.get(reqUrl);

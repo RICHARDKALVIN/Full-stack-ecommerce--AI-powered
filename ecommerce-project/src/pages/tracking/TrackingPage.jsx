@@ -6,13 +6,13 @@ import { useParams } from 'react-router';
 import dayjs from 'dayjs';
 
 export function TrackingPage({cart}){
-
+    const API = import.meta.env.VITE_API_URL;
   const [currOrder ,setOrder] =useState(null);
    const {orderId,productId} = useParams();
    useEffect(()=>{
     const getO = async ()=>{
 
-    const response = await axios.get(`/api/orders/${orderId}?expand=products`)
+    const response = await axios.get(`${API}/api/orders/${orderId}?expand=products`)
     setOrder(response.data);
     console.log(response.data);
     }

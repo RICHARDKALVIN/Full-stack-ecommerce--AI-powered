@@ -3,7 +3,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 export function DeliveryOptions({ deliveryOptions ,cartItem ,loadCart}) {
-
+const API = import.meta.env.VITE_API_URL;
     return (
         <div className="delivery-options">
             <div className="delivery-options-title">
@@ -17,7 +17,7 @@ export function DeliveryOptions({ deliveryOptions ,cartItem ,loadCart}) {
                         priceString = `₹ ${((option.priceCents * 87) / 100).toFixed(2)} - Shipping`;
                     }
                     const updateDeliveryOption = async ()=>{
-                        await axios.put(`api/cart-items/${cartItem.productId}`,{
+                        await axios.put(`${API}/api/cart-items/${cartItem.productId}`,{
                          deliveryOptionId : option.id
                         });
                         await loadCart();
